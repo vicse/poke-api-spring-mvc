@@ -1,11 +1,9 @@
 package com.example.pokemonapi.model.thirdparty;
 
 import java.util.List;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 public class PokemonListResponse {
     private Integer count;
     private String next;
