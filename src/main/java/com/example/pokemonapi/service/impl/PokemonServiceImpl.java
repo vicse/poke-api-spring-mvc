@@ -39,7 +39,7 @@ public class PokemonServiceImpl implements PokemonService {
         List<PokemonDetail> pokemonDetailList = new ArrayList<>();
 
         for (Pokemon pokemon : pokemonList) {
-            String urlImage = getPokemonDetail(pokemon).getSprites().getBack_default();
+            String urlImage = getPokemonDetail(pokemon).getSprites().getFront_default();
             PokemonDetail pokemonDetail = new PokemonDetail(pokemon.getName(), urlImage);
             pokemonDetailList.add(pokemonDetail);
         }
