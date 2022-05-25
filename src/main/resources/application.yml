@@ -1,0 +1,9 @@
+server:
+  port: 8081
+
+http-client:
+  pokeapi:
+    base-url: https://pokeapi.co/api/v2/
+    connect-timeout: 10
+    read-timeout: 10
+    logging-level: BODY
