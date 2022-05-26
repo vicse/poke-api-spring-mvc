@@ -1,5 +1,6 @@
 package com.example.pokemonapi.controller;
 
+import com.example.pokemonapi.model.api.PokemonDetail;
 import com.example.pokemonapi.model.dto.PokemonDto;
 import com.example.pokemonapi.service.PokemonService;
 
@@ -10,6 +11,7 @@ import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,6 +35,12 @@ public class PokemonController {
         return pokemonService.getPokemonDetailList().stream()
                 .map(p -> new PokemonDto(p.getName(), p.getImgUrl() != null ? p.getImgUrl() : null))
                 .collect(Collectors.toList());
+    }
+
+    @GetMapping("/evolution/{pokemonId}")
+    public PokemonDto getEvolutionByPokeId(@PathVariable("pokemonId") String pokemonId) throws IOException {
+        PokemonDetail pokemonDetail = pokemonService.getEvolutionByPokeId(pokemonId);
+        return new PokemonDto(pokemonDetail.getName(), pokemonDetail.getImgUrl());
     }
 
 }

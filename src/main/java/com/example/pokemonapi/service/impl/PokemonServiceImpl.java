@@ -39,7 +39,7 @@ public class PokemonServiceImpl implements PokemonService {
         List<PokemonDetail> pokemonDetailList = new ArrayList<>();
 
         for (Pokemon pokemon : pokemonList) {
-            String urlImage = getPokemonDetail(pokemon).getSprites().getFront_default();
+            String urlImage = getPokemonDetail(pokemon).getSprites().getOther().getDream_world().getFront_default();
             PokemonDetail pokemonDetail = new PokemonDetail(pokemon.getName(), urlImage);
             pokemonDetailList.add(pokemonDetail);
         }
@@ -47,6 +47,19 @@ public class PokemonServiceImpl implements PokemonService {
         return pokemonDetailList;
 
     }
+
+    @Override
+    public PokemonDetail getEvolutionByPokeId(String pokemonId) throws IOException {
+        String pokemonEvolutionName = pokeService.getEvolutionChain(pokemonId)
+                .getChain().getEvolves_to().get(0).getSpecies().getName();
+
+        String urlImgEvolutionName = pokeService.getPokemonByName(pokemonEvolutionName)
+                .getSprites().getOther().getDream_world().getFront_default();
+
+        return new PokemonDetail(pokemonEvolutionName, urlImgEvolutionName);
+
+    }
+
 
     private PokemonResponse getPokemonDetail(Pokemon pokemon) throws IOException {
         return pokeService.getPokemonById(getIdPokemon(pokemon));
