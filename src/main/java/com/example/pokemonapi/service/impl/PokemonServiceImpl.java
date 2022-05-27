@@ -100,8 +100,10 @@ public class PokemonServiceImpl implements PokemonService {
 
         String idEvolutionChain = getIdEvolution(pokemonSpecie.getEvolution_chain().getUrl());
         Chain chain = chainMapper.toModel(pokeService.getEvolutionChain(idEvolutionChain).getChain());
+        PokemonDetail pokemonDetail = getPokemonDetailByName(chain.getSpecies().getName());
 
         List<PokemonDetail> pokemonDetailList = new ArrayList<>();
+        pokemonDetailList.add(pokemonDetail);
         String pokemonEvolutionName;
         String pokemonEvolutionName2;
         String pokemonEvolutionName3;
