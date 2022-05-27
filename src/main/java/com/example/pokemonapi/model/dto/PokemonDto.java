@@ -7,5 +7,5 @@ import lombok.Data;
 @AllArgsConstructor
 public class PokemonDto {
     private String name;
-    private String urlImage;
+    private String urlDetail;
 }

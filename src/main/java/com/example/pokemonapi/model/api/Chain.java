@@ -1,13 +1,14 @@
 package com.example.pokemonapi.model.api;
 
+import java.util.List;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
+
+
 
 @Data
 @AllArgsConstructor
-@Builder
-public class PokemonDetail {
-    private String name;
-    private String imgUrl;
+public class Chain {
+    private Specie species;
+    private List<EvolvesTo> evolves_to;
 }

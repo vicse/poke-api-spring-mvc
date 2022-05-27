@@ -3,6 +3,7 @@ package com.example.pokemonapi.proxy.impl;
 import com.example.pokemonapi.model.thirdparty.EvolutionChainResponse;
 import com.example.pokemonapi.model.thirdparty.PokemonListResponse;
 import com.example.pokemonapi.model.thirdparty.PokemonResponse;
+import com.example.pokemonapi.model.thirdparty.PokemonSpecieResponse;
 import com.example.pokemonapi.proxy.api.PokeApi;
 import com.example.pokemonapi.proxy.service.PokeService;
 import java.io.IOException;
@@ -49,8 +50,18 @@ public class PokeServiceImpl implements PokeService {
     }
 
     @Override
-    public EvolutionChainResponse getEvolutionChain(String pokemonId) throws IOException {
-        Response<EvolutionChainResponse> response = pokeApi.getEvolutionChain(pokemonId).execute();
+    public EvolutionChainResponse getEvolutionChain(String idEvolutionChain) throws IOException {
+        Response<EvolutionChainResponse> response = pokeApi.getEvolutionChain(idEvolutionChain).execute();
+
+        if (!response.isSuccessful()) {
+            throw new IOException(response.errorBody() != null ? response.errorBody().string() : "Unknown error");
+        }
+        return response.body();
+    }
+
+    @Override
+    public PokemonSpecieResponse getSpecieByPokemonId(String pokemonId) throws IOException {
+        Response<PokemonSpecieResponse> response = pokeApi.getPokemonSpecieByPokemonId(pokemonId).execute();
 
         if (!response.isSuccessful()) {
             throw new IOException(response.errorBody() != null ? response.errorBody().string() : "Unknown error");

@@ -3,7 +3,7 @@ package com.example.pokemonapi.model.thirdparty;
 import lombok.Data;
 
 @Data
-public class PokemonResponse {
-    private SpritesResponse sprites;
+public class PokemonSpecieResponse {
+    private EvoluteChainResponse evolution_chain;
     private String name;
 }
